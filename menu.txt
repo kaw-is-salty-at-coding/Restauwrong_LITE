@@ -1,7 +1,7 @@
 01,Hang-le curry,80,10
 02,Papaya salad,60,10
 03,Roast Chicken,80,10
-04,Spicy minced beef,60,15
+04,Spicy minced beef,60,10
 05,Spicy minced pork,50,10
 06,Spicy minced chicken,50,10
 07,Stewed pork leg on rice,50,10
@@ -18,3 +18,5 @@
 18,Fried beef with oyster sauce,55,10
 19,Noodle soup,50,10
 20,Minced pork omelet,50,10
+21,Rice Porridge,45,10
+22,Congee with pork,55,10

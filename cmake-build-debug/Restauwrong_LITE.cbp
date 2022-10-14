@@ -8,84 +8,86 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Restauwrong_LITE">
-				<Option output="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Restauwrong_LITE.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug"/>
+				<Option output="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Restauwrong_LITE.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/mingw/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Restauwrong_LITE"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 Restauwrong_LITE"/>
+					<CompileFile command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Restauwrong_LITE/fast">
-				<Option output="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Restauwrong_LITE.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug"/>
+				<Option output="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Restauwrong_LITE.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2021.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/mingw/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Restauwrong_LITE/fast"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 Restauwrong_LITE/fast"/>
+					<CompileFile command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kawin/CLionProjects/Restauwrong_LITE2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2021.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/main.cpp">
+		<Unit filename="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/main.cpp">
 			<Option target="Restauwrong_LITE"/>
 		</Unit>
-		<Unit filename="C:/Users/kawin/CLionProjects/Restauwrong_LITE2/CMakeLists.txt">
+		<Unit filename="C:/Users/Juuko/CLionProjects/Restauwrong_LITE11/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

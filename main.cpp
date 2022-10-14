@@ -189,17 +189,19 @@ public:
 
 class nodeMenu {
 public:
-    nodeMenu(string m, int q, int p,string u) {
+    nodeMenu(string m, int q, int p,string u,int s) {
         menu = std::move(m);
         quantity = q;
         price = p;
         username = u;
+        status = s;
     }
 
     string menu;
     int quantity;
     int price;
     string username;
+    int status;
     nodeMenu *link{};
 };
 
@@ -214,8 +216,8 @@ public:
     explicit nodeOrder() {
     }
 
-    void add(string m, int q, int p,string u) {
-        auto *temp = new nodeMenu(std::move(m), q, p,u);
+    void add(string m, int q, int p,string u,int s) {
+        auto *temp = new nodeMenu(std::move(m), q, p,std::move(u),s);
 
         if (count == 0) {
             head = temp;
@@ -273,7 +275,7 @@ public:
         nodeMenu *temp = head;
         total = 0;
         for(int i = 0 ; i< count ; i++){
-            if(temp->username == user ||user =="-"){
+            if((temp->username == user ||user =="-" )  && temp->status == 1 ){
                 total += temp->price * temp->quantity;
                 cout << left << setw(6) << "|"  << left << setw(48) << temp->menu << left
                      << setw(10) << temp->quantity << setw(10)
@@ -285,6 +287,79 @@ public:
         print_menu_line();
         cout <<"|" <<  setw(70) << right << "Total: " <<setw(5)<< total << right<<setw(14) <<right<< "|" << endl;
     }
+    void read_file_order(){
+        string username, menuname, menupricestr,menuquantitystr,menustatusstr;
+        int menuprice,menuquantity,menustatus;
+        ifstream file;
+        string line;
+        string d = ",";
+        file.open("..//order.txt",ios::in);
+        if(file.fail()){
+            cout << " can't open file order.txt" << endl;
+        }else {
+            while( getline( file, line) ){
+                username = line.substr(0, line.find(d));
+                line.erase(0, line.find(d) + d.length());
+                menuname = line.substr(0, line.find(d));
+                line.erase(0, line.find(d) + d.length());
+                menupricestr = line.substr(0, line.find(d));
+                line.erase(0, line.find(d) + d.length());
+                menuquantitystr = line.substr(0, line.find(d));
+                line.erase(0, line.find(d) + d.length());
+                menustatusstr = line.substr(0, line.find(d));
+                                  line.erase(0, line.find(d) + d.length());
+                menustatus = stoi(menustatusstr);
+                menuprice = stoi(menupricestr);
+                menuquantity = stoi(menuquantitystr);
+                add(menuname,menuquantity,menuprice,username,menustatus);
+            }
+            file.close();
+        }
+    }
+
+    void write_file_order(){
+        fstream fileout;
+        fileout.open("..//order.txt", ios::out);
+        if (fileout.fail()) {
+            cout << "cant open file" << endl;
+        } else {
+            nodeMenu *temp = head;
+            while( temp != NULL )
+            {
+                fileout << temp->username << "," << temp->menu << "," <<temp->price << "," << temp->quantity << "," << temp->status << endl;
+                temp = temp->link;
+            }
+            fileout.close();
+        }
+    }
+
+    void resetnode(){
+        count = 0;
+        read_file_order();
+    }
+
+    void cancelorder( string username,int num ){
+        nodeMenu * main = head;
+        nodeMenu * temp = main;
+        int c[100];
+        int i = 0,k = 0;
+            while (temp != NULL) {
+                if ((temp->username ==username || username == "-")&& temp->status == 1) {
+                    c[k] = i;
+                    k++;
+                }
+                i++;
+                temp = temp->link;
+            }
+        for( i = 0; i <= c[num-1]; i++ )
+        {
+            if( i == c[num-1] ){
+                main->status = 0;
+            }
+            main = main->link;
+        }
+    }
+
 };
 
 class menu_list {
@@ -516,6 +591,18 @@ public:
             return result;
         }
     }
+
+    int getLastestMenuID(){
+        auto * temp = new node_read_menu();
+        temp = head_menu; string id; int result;
+        for( int i = 1; i <= count_menu; i++ ){
+            id = temp->menu_ID;
+            temp = temp->link;
+        }
+        result = stoi(id);
+        return result;
+    }
+
 };
 nodeOrder ordermode;
 menu_list menu;
@@ -535,8 +622,11 @@ int home_menu() {
 };
 
 void main_menu(const string &role) {
-    int no,quan;
+    int no,quan,normal_or_extra;
+    string wait;
     int main_menu_choice;
+    string menuname,menuIDstr;
+    int   menuprice,menuID;
     menu.read_file_menu_txt();
     Main_Menu:
     if (role == "customer") {
@@ -555,21 +645,42 @@ void main_menu(const string &role) {
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
             menu.view_menu();
-            cout << "Order[0 to cancel]:";
+            cout << "Order[0 to cancel] : ";
             cin >> no;
-            cout << "How many?[0 to cancel]:";
+            cout << "Normal Or Extra ( 1 for normal & 2 for extra ) : ";
+            cin  >> normal_or_extra;
+            cout << "How many?[0 to cancel] : ";
             cin >> quan;
             cout << endl;
-            if (no != 0 && quan != 0) {
-                ordermode.add(menu.get_menu_name(no), quan,menu.get_menu_price(no),memberList.get(slot,1));
+            if (no != 0 && quan != 0 && normal_or_extra == 1 ) {
+                ordermode.add(menu.get_menu_name(no), quan,menu.get_menu_price(no),memberList.get(slot,1),1);
+                ordermode.write_file_order();
+            }else if ( no != 0 && quan != 0 && normal_or_extra == 2 ){
+                ordermode.add(menu.get_menu_name(no), quan,menu.get_menu_price(no) + 10,memberList.get(slot,1),1);
+                ordermode.write_file_order();
             }
         } else if (main_menu_choice == 2) {
-
-
+                ordermode.view_my_order(memberList.get(slot,1));
+                cout << " Enter Number To Cancel :";
+                int num;
+                cin  >> num;
+                ordermode.cancelorder(memberList.get(slot,1),num);
+                ordermode.write_file_order();
+                ordermode.resetnode();
+                cout << " Back : ";
+                cin  >> wait;
+                goto Main_Menu;
         } else if (main_menu_choice == 3) {
             menu.view_menu();
+            cout << " Back : ";
+            cin  >> wait;
+            goto Main_Menu;
         } else if (main_menu_choice == 4) {
            ordermode.view_my_order(memberList.get(slot,1));
+           print_menu_line();
+            cout << " Back : ";
+            cin  >> wait;
+            goto Main_Menu;
         }
         if (main_menu_choice != 5) {
             goto Main_Menu;
@@ -581,16 +692,45 @@ void main_menu(const string &role) {
         print_menu_line();
         cout << setw(35) << left << "|" << setw(40) << left << "[1] Manage Order" << setw(15) << right << "|" << endl;
         cout << setw(35) << left << "|" << setw(40) << left << "[2] View menu" << setw(15) << right << "|" << endl;
-        cout << setw(35) << left << "|" << setw(40) << left << "[3] Logout" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[3] Add Menu" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[4] Logout" << setw(15) << right << "|" << endl;
         print_menu_line();
         cout << "Select option[1-4] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
-        ordermode.view_my_order("-");
+            ordermode.view_my_order("-");
+            cout << " Enter Number To Cancel :";
+            int num;
+            cin  >> num;
+            ordermode.cancelorder("-",num);
+            ordermode.write_file_order();
+            ordermode.resetnode();
+            cout << " Back : ";
+            cin  >> wait;
+            goto Main_Menu;
         } else if (main_menu_choice == 2) {
         menu.view_menu();
+            cout << " Back : ";
+            cin  >> wait;
+            goto Main_Menu;
+        } else if( main_menu_choice == 3 ){
+            print_menu_line();
+            cout << setw(35) << left << "|" << setw(40) << left << "Add Menu" << setw(15) << right << "|" << endl;
+            print_menu_line();
+            cout << "|   " << " Enter Menu Name : ";
+            getline(cin >> ws,menuname);
+            cout << "|   " << "Enter Price : ";
+            cin  >> menuprice;
+            menuID = menu.getLastestMenuID();
+            menuID++;
+            menuIDstr = to_string(menuID);
+            menu.add_menu(menuIDstr,menuname,menuprice,10);
+            print_menu_line();
+            cout << " Back : ";
+            cin  >> wait;
+            goto Main_Menu;
         }
-        if (main_menu_choice != 3) {
+        if (main_menu_choice != 4) {
 
             goto Main_Menu;
         }
@@ -599,6 +739,7 @@ void main_menu(const string &role) {
 
 int main() {
     memberList.readUserFile();
+    ordermode.read_file_order();
     Home:
     int home = home_menu();
 
