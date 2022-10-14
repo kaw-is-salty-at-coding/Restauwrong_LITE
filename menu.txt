@@ -5,3 +5,16 @@
 05,Spicy minced pork,50,10
 06,Spicy minced chicken,50,10
 07,Stewed pork leg on rice,50,10
+08,Fried rice with pork,60,10
+09,Fried rice with chicken,60,10
+10,Fried rice with shrimps,70,10
+11,Steamed chicken with rice,60,10
+12,Roasted duck on rice,60,10
+13,Fried chicken,50,10
+14,Charcoal-boiled pork neck,80,10
+15,Tom Yum Kung,70,10
+16,Jelly noodle soup,60,10
+17,Massa man Curry,70,10
+18,Fried beef with oyster sauce,55,10
+19,Noodle soup,50,10
+20,Minced pork omelet,50,10
