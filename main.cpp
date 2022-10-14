@@ -137,7 +137,7 @@ public:
         } while (dupe);
 
         printline();
-        cout << "\tRegister Successfully" << endl;
+        cout << "Register Successfully" << endl;
         printline();
         string ID_check = to_string(total_count);
         int check = 6-ID_check.length();
@@ -371,12 +371,12 @@ void main_menu(const string &role) {
         cout << setw(40) << left << "|" << "MAIN MENU" << setw(41) << right << "|" << endl;
         print_menu_line();
         cout << setw(35) << left << "|" << setw(40) << left << "[1] Order" << setw(15) << right << "|" << endl;
-        cout << setw(35) << left << "|" << setw(40) << left << "[2] Manage order" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[2] Cancel order" << setw(15) << right << "|" << endl;
         cout << setw(35) << left << "|" << setw(40) << left << "[3] View menu" << setw(15) << right
              << "|" << endl;
         cout << setw(35) << left << "|" << setw(40) << left << "[4] Logout" << setw(15) << right << "|" << endl;
         print_menu_line();
-        cout << "Select option[1-7] :";
+        cout << "Select option[1-4] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
 
@@ -386,6 +386,25 @@ void main_menu(const string &role) {
             
         }
         if (main_menu_choice != 4){
+            goto Main_Menu;
+        }
+    }
+    else if (role == "staff") {
+        print_menu_line();
+        cout << setw(40) << left << "|" << "MAIN MENU" << setw(41) << right << "|" << endl;
+        print_menu_line();
+        cout << setw(35) << left << "|" << setw(40) << left << "[1] Manage Order" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[2] View menu" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[3] Logout" << setw(15) << right << "|" << endl;
+        print_menu_line();
+        cout << "Select option[1-4] :";
+        cin >> main_menu_choice;
+        if (main_menu_choice == 1) {
+
+        }else if(main_menu_choice == 2){
+
+        }
+        if (main_menu_choice != 3){
             goto Main_Menu;
         }
     }
