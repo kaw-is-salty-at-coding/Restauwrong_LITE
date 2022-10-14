@@ -274,6 +274,26 @@ public:
         }
         print_menu_line();
     }
+    void view_my_order() {
+        print_menu_line();
+        cout << setw(41) << left << "|" << "My order" << setw(41) << right << "|" << endl;
+        print_menu_line();
+        cout << left << setw(6) << "|"  << left << setw(48) << "Food Name" << left
+             << setw(10) << "Quantity" << setw(10)
+             << "" << left << setw(10) << "Price" << right << setw(6) << "|" << endl;
+        print_menu_line();
+        nodeMenu *temp = head;
+        total = 0;
+        for(int i = 0 ; i< count ; i++){
+            total += temp->price * temp->quantity;
+            cout << left << setw(6) << "|"  << left << setw(48) << temp->menu << left
+                 << setw(10) << temp->quantity << setw(10)
+                 << "" << left << setw(10) << temp->price << right << setw(6) << "|" << endl;
+            temp = temp->link;
+        }
+        print_menu_line();
+        cout <<"|" <<  setw(70) << right << "Total: " <<setw(5)<< total << right<<setw(14) <<right<< "|" << endl;
+    }
 };
 
 class menu_list {
@@ -441,14 +461,6 @@ public:
         print_menu_line();
     }
 
-    void view_my_order() {
-        print_menu_line();
-        cout << setw(41) << left << "|" << "My order" << setw(41) << right << "|" << endl;
-        print_menu_line();
-        cout << left << setw(6) << "|" << left << setw(10) << "ID" << left << setw(35) << "Food Name" << left
-             << setw(10) << "Quantity" << setw(10)
-             << "" << left << setw(10) << "Extra Price" << right << setw(6) << "|" << endl;
-    }
     string get_menu_name( int no ){
         auto * temp = new node_read_menu();
         temp = head_menu;
@@ -556,6 +568,7 @@ void main_menu(const string &role) {
             cin >> no;
             cout << "How many?[0 to cancel]:";
             cin >> quan;
+            cout << endl;
             if (no != 0 && quan != 0) {
                 ordermode.add(menu.get_menu_name(no), quan,menu.get_menu_price(no),memberList.get(slot,1));
             }
@@ -565,7 +578,7 @@ void main_menu(const string &role) {
         } else if (main_menu_choice == 3) {
             menu.view_menu();
         } else if (main_menu_choice == 4) {
-            menu.view_my_order();
+           ordermode.view_my_order();
         }
         if (main_menu_choice != 5) {
             goto Main_Menu;
