@@ -223,8 +223,8 @@ public:
 
     menu_list() {
         count_menu = 0;
-        head_menu = NULL;
-        tail_menu = NULL;
+        head_menu = nullptr;
+        tail_menu = nullptr;
     }
 
     // function add data to node
