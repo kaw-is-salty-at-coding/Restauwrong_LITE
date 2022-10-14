@@ -36,6 +36,7 @@ public:
     member *tail_of_member_list;
     int member_count;
     int total_count;
+
     void add(const string &ID, string user, string pass, string type) {
         member *temp;
         temp = new member(ID, std::move(user), std::move(pass), std::move(type));
@@ -50,7 +51,6 @@ public:
     }
 
 
-
     void readUserFile() {
         string total_member;
         ifstream user_file;
@@ -63,7 +63,8 @@ public:
         if (user_file.fail()) {
             cout << "cant open file" << endl;
         } else {
-            getline(user_file, total_member);{
+            getline(user_file, total_member);
+            {
             }
             while (getline(user_file, line)) {
                 id = line.substr(0, line.find(','));
@@ -74,13 +75,13 @@ public:
                 line.erase(0, line.find(',') + 1);
                 type = line.substr(0, line.find(' '));
                 stringstream total(total_member);
-                total>>total_count;
+                total >> total_count;
                 add(id, std::move(user), std::move(password), std::move(type));
             }
         }
     }
 
-    int login()  {
+    int login() {
         string username;
         string password;
         print_menu_line();
@@ -140,11 +141,11 @@ public:
         cout << "Register Successfully" << endl;
         print_menu_line();
         string ID_check = to_string(total_count);
-        int check = 6-ID_check.length();
-        for(int i = 0 ; i<check ; i++){
-            ID+="0";
+        int check = 6 - ID_check.length();
+        for (int i = 0; i < check; i++) {
+            ID += "0";
         }
-        ID+= to_string(total_count);
+        ID += to_string(total_count);
         add(ID, user, pass, "customer");
         total_count++;
         writefile();
@@ -159,8 +160,8 @@ public:
             member *temp = head_of_member_list;
             fileout << total_count << endl;
             for (int j = 0; j < member_count; j++) {
-                fileout << temp->member_ID<<"," << temp->member_Username << ","
-                << temp->member_password << "," << temp->member_type << " " << endl;
+                fileout << temp->member_ID << "," << temp->member_Username << ","
+                        << temp->member_password << "," << temp->member_type << " " << endl;
                 temp = temp->link;
             }
         }
@@ -177,26 +178,157 @@ public:
             }
 
         }
-        if(type == 0){
+        if (type == 0) {
             return temp->member_type;
         }
         return {};
     }
 };
 
-class order {
+class nodeMenu {
 public:
-    string order_name;
-    string order_ID;
-    float order_price;
-
-    order(string name, string ID, float price) {
-        order_name = std::move(name);
-        order_ID = std::move(ID);
-        order_price = price;
+    nodeMenu(string m, int q, int p) {
+        menu = std::move(m);
+        quantity = q;
+        price = p;
     }
+
+    string menu;
+    int quantity;
+    int price;
+    nodeMenu *link{};
 };
 
+class nodeOrder {
+public:
+    nodeMenu *head{};
+    nodeMenu *tail{};
+    int count = 0;
+    int total = 0;
+    int table;
+    nodeOrder *link{};
+
+    explicit nodeOrder(int t) {
+        table = t;
+    }
+
+    void add(string m, int q, int p) {
+        auto *temp = new nodeMenu(std::move(m), q, p);
+
+        if (count == 0) {
+            head = temp;
+            tail = temp;
+            count++;
+        } else {
+            nodeMenu *compare = head;
+            bool dupe = false;
+            for (int j = 0; j < count; j++) {
+                if (compare->menu == temp->menu) {
+                    compare->quantity += temp->quantity;
+                    dupe = true;
+                }
+                compare = compare->link;
+            }
+            if (!dupe) {
+                tail->link = temp;
+                tail = temp;
+                count++;
+            }
+
+        }
+
+        total += temp->price * temp->quantity;
+    }
+
+    void showFull() const {
+        nodeMenu *temp = head;
+        print_menu_line();
+        cout << "|Table:" << setw(2) << table << setw(40) << right << "|" << endl
+             << "|" << setw(4) << "No.|" << setw(26) << left << "Menu" << "|" << setw(5) << "Qty" << "|" << setw(5)
+             << "Price" << "|" << "Net |" << endl;
+        print_menu_line();
+        for (int i = 0; i < count; i++) {
+            cout << "|" << setw(4) << i + 1 << setw(26) << temp->menu << "|" << setw(5) << temp->quantity << "|"
+                 << setw(5)
+                 << temp->price
+                 << "|" << setw(4) << temp->quantity * temp->price << "|" << endl;
+            temp = temp->link;
+        }
+        print_menu_line();
+        cout << "Total:" << right << total << endl;
+        print_menu_line();
+    }
+
+    void showMini() const {
+        nodeMenu *temp = head;
+        print_menu_line();
+        cout << "|Table:" << setw(2) << table << setw(29) << right << "|" << endl
+             << "|" << setw(4) << "No.|" << setw(26) << left << "Menu" << "|" << setw(5) << "Qty" << "|"
+             << endl;
+        print_menu_line();
+        for (int i = 0; i < count; i++) {
+            cout << "|" << setw(4) << i + 1 << setw(26) << temp->menu << "|" << setw(5) << temp->quantity << "|"
+                 << endl;
+            temp = temp->link;
+        }
+        print_menu_line();
+    }
+};
+class queue {
+public:
+    nodeOrder *front;
+    nodeOrder *rear;
+    nodeOrder *del;
+    int count;
+
+    void enqueue(int table) {
+        if (table == 0) {
+
+        } else {
+            auto *temp = new nodeOrder(table);
+            if (count == 0) {
+                front = temp;
+                rear = temp;
+            } else {
+                rear->link = temp;
+                rear = temp;
+            }
+            count++;
+        }
+    }
+
+    void dequeue() {
+        cout << "===============================" << endl;
+        cout << "Table:" << front->table << "done" << endl;
+        cout << "===============================" << endl;
+        del = front;
+        front = front->link;
+        delete del;
+        count--;
+    }
+
+    void show() const {
+        nodeOrder *temp = front;
+        cout << "______________________________________" << endl;
+        cout << "Queue Exist:" << count << endl;
+        cout << "______________________________________" << endl;
+        for (int i = 0; i < count; i++) {
+            cout << endl;
+            cout << "Queue:" << i + 1 << endl;
+            temp->showMini();
+            temp = temp->link;
+        }
+    }
+
+    void add(string m, int q, int p) const {
+        rear->add(std::move(m), q, p);
+    }
+
+    void showOrder() const {
+        rear->showFull();
+    }
+};
+queue qu;
 
 class menu_list {
 private:
@@ -339,29 +471,42 @@ public:
             temp = temp->link;
         }
     }
-    void view_menu(){
+
+    void view_menu() {
         print_menu_line();
         cout << setw(43) << left << "|" << "View Menu" << setw(38) << right << "|" << endl;
         print_menu_line();
-        auto * temp = new node_read_menu();
+        auto *temp = new node_read_menu();
         temp = head_menu;
-        cout << left << setw(6) << "|" << left << setw(10) << "No." << left << setw(35 ) << "Food Name" << left << setw(10 ) << "Normal Price" << setw(10)
-             << "" << left << setw(10) << "Extra Price" << right << setw(6 ) << "|" << endl;
+        cout << left << setw(6) << "|" << left << setw(10) << "No." << left << setw(35) << "Food Name" << left
+             << setw(10) << "Normal Price" << setw(10)
+             << "" << left << setw(10) << "Extra Price" << right << setw(6) << "|" << endl;
         print_menu_line();
         string normalprice, extraprice;
-        while ( temp != NULL )
-        {
+        while (temp != NULL) {
             normalprice = to_string(temp->menu_price);
-            extraprice  = to_string(temp->menu_price + temp->menu_price_extra);
-            cout << left << setw(6) << "|" << left << setw(10) << "[" + temp->menu_ID + "]" << left << setw(30 ) << temp->menu_name << setw(5) << "|" << left << setw(10 ) << "     " + normalprice << setw(7)
-                 << "" << setw(3) << "|" << left << setw(10) << "      " + extraprice << right << setw(9 ) << "|" << endl;
+            extraprice = to_string(temp->menu_price + temp->menu_price_extra);
+            cout << left << setw(6) << "|" << left << setw(10) << "[" + temp->menu_ID + "]" << left << setw(30)
+                 << temp->menu_name << setw(5) << "|" << left << setw(10) << "     " + normalprice << setw(7)
+                 << "" << setw(3) << "|" << left << setw(10) << "      " + extraprice << right << setw(9) << "|"
+                 << endl;
             temp = temp->link;
         }
         print_menu_line();
     }
 
+    void view_my_order() {
+        print_menu_line();
+        cout << setw(41) << left << "|" << "My order" << setw(41) << right << "|" << endl;
+        print_menu_line();
+        cout << left << setw(6) << "|" << left << setw(10) << "ID" << left << setw(35) << "Food Name" << left
+             << setw(10) << "Quantity" << setw(10)
+             << "" << left << setw(10) << "Extra Price" << right << setw(6) << "|" << endl;
+    }
 };
+
 menu_list menu;
+
 int home_menu() {
     int home_menu_choice;
     print_menu_line();
@@ -375,7 +520,9 @@ int home_menu() {
     cin >> home_menu_choice;
     return home_menu_choice;
 };
+
 void main_menu(const string &role) {
+    int no,quan;
     int main_menu_choice;
     menu.read_file_menu_txt();
     Main_Menu:
@@ -387,23 +534,33 @@ void main_menu(const string &role) {
         cout << setw(35) << left << "|" << setw(40) << left << "[2] Cancel order" << setw(15) << right << "|" << endl;
         cout << setw(35) << left << "|" << setw(40) << left << "[3] View menu" << setw(15) << right
              << "|" << endl;
-        cout << setw(35) << left << "|" << setw(40) << left << "[4] Logout" << setw(15) << right << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[4] View my order" << setw(15) << right
+             << "|" << endl;
+        cout << setw(35) << left << "|" << setw(40) << left << "[5] Logout" << setw(15) << right << "|" << endl;
         print_menu_line();
-        cout << "Select option[1-4] :";
+        cout << "Select option[1-5] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
             menu.view_menu();
-        }else if(main_menu_choice == 2){
+            cout << "Order[0 to cancel]:";
+            cin >> no;
+            cout << "How many?[0 to cancel]:";
+            cin >> quan;
+            if (no != 0 && quan != 0) {
+                qu.add(menuList[no - 1], quan, menuPrice[no - 1]);
+            }
+        } else if (main_menu_choice == 2) {
 
 
-        }else if (main_menu_choice == 3){
+        } else if (main_menu_choice == 3) {
             menu.view_menu();
+        } else if (main_menu_choice == 4) {
+            menu.view_my_order();
         }
-        if (main_menu_choice != 4){
+        if (main_menu_choice != 5) {
             goto Main_Menu;
         }
-    }
-    else if (role == "staff") {
+    } else if (role == "staff") {
         print_menu_line();
         cout << setw(40) << left << "|" << "MAIN MENU" << setw(41) << right << "|" << endl;
         print_menu_line();
@@ -415,10 +572,10 @@ void main_menu(const string &role) {
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
 
-        }else if(main_menu_choice == 2){
+        } else if (main_menu_choice == 2) {
 
         }
-        if (main_menu_choice != 3){
+        if (main_menu_choice != 3) {
 
             goto Main_Menu;
         }
@@ -430,11 +587,11 @@ int main() {
     memberList.readUserFile();
     Home:
     int home = home_menu();
-    int slot  = -1;
+    int slot = -1;
     if (home == 1) {
         slot = memberList.login();
-        if(slot!= -1){
-            main_menu(memberList.get(slot,0));
+        if (slot != -1) {
+            main_menu(memberList.get(slot, 0));
         }
     } else if (home == 2) {
         memberList.registerUser();
