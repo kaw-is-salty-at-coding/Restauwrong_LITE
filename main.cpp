@@ -285,7 +285,7 @@ public:
         nodeMenu *temp = head;
         total = 0;
         for(int i = 0 ; i< count ; i++){
-            if(temp->username == user ){
+            if(temp->username == user ||user =="-"){
                 total += temp->price * temp->quantity;
                 cout << left << setw(6) << "|"  << left << setw(48) << temp->menu << left
                      << setw(10) << temp->quantity << setw(10)
@@ -586,7 +586,8 @@ void main_menu(const string &role) {
         if (main_menu_choice != 5) {
             goto Main_Menu;
         }
-    } else if (role == "staff") {
+    }
+    else if (role == "staff") {
         print_menu_line();
         cout << setw(40) << left << "|" << "MAIN MENU" << setw(41) << right << "|" << endl;
         print_menu_line();
@@ -597,9 +598,9 @@ void main_menu(const string &role) {
         cout << "Select option[1-4] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
-
+        ordermode.view_my_order("-");
         } else if (main_menu_choice == 2) {
-
+        menu.view_menu();
         }
         if (main_menu_choice != 3) {
 
