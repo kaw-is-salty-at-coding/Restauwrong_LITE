@@ -81,10 +81,10 @@ public:
         string username;
         string password;
         printline();
-        cout << setw(43) << left << "|" << "LOGIN" << setw(43) << right << "|" << endl;
+        cout << setw(43) << left << "|" << "LOGIN" << setw(42) << right << "|" << endl;
         cout << "Username:";
         cin >> username;
-        cout << "Password";
+        cout << "Password:";
         cin >> password;
         member *temp = head_of_member_list;
         bool found = false;
@@ -97,6 +97,7 @@ public:
             } else temp = temp->link;
         }
         if (!found) {
+            printline();
             cout << "Not found!" << endl;
             return -1;
         }
@@ -375,6 +376,14 @@ void main_menu(const string &role) {
         cout << "Select option[1-7] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
+
+        }else if(main_menu_choice == 2){
+
+        }else if (main_menu_choice == 3){
+            
+        }
+        if (main_menu_choice != 4){
+            goto Main_Menu;
         }
     }
 }
