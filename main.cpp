@@ -6,6 +6,14 @@
 
 using namespace std;
 
+static void printline() {
+    for (int i = 0; i < 90; i++) {
+        cout << "=";
+    }
+    cout << endl;
+}
+
+
 class member {
 public:
     string member_ID;
@@ -41,12 +49,7 @@ public:
         member_count++;
     }
 
-    static void printline() {
-        for (int i = 0; i < 90; i++) {
-            cout << "=";
-        }
-        cout << endl;
-    }
+
 
     void readUserFile() {
         string total_member;
