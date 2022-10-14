@@ -6,7 +6,7 @@
 
 using namespace std;
 
-static void printline() {
+static void print_menu_line() {
     for (int i = 0; i < 90; i++) {
         cout << "=";
     }
@@ -83,7 +83,7 @@ public:
     int login()  {
         string username;
         string password;
-        printline();
+        print_menu_line();
         cout << setw(43) << left << "|" << "LOGIN" << setw(42) << right << "|" << endl;
         cout << "Username:";
         cin >> username;
@@ -100,7 +100,7 @@ public:
             } else temp = temp->link;
         }
         if (!found) {
-            printline();
+            print_menu_line();
             cout << "Not found!" << endl;
             return -1;
         }
@@ -113,9 +113,9 @@ public:
         string pass;
         string type;
         int dupe = false;
-        printline();
+        print_menu_line();
         cout << "Register" << endl;
-        printline();
+        print_menu_line();
         do {
             cout << "Enter Username:";
             cin >> user;
@@ -130,15 +130,15 @@ public:
                 temp = temp->link;
             }
             if (dupe) {
-                printline();
+                print_menu_line();
                 cout << "Your username have already use now!" << endl << "Please Enter again." << endl;
-                printline();
+                print_menu_line();
             }
         } while (dupe);
 
-        printline();
+        print_menu_line();
         cout << "Register Successfully" << endl;
-        printline();
+        print_menu_line();
         string ID_check = to_string(total_count);
         int check = 6-ID_check.length();
         for(int i = 0 ; i<check ; i++){
@@ -339,16 +339,29 @@ public:
             temp = temp->link;
         }
     }
+    void view_menu(){
+        print_menu_line();
+        cout << setw(43) << left << "|" << "View Menu" << setw(38) << right << "|" << endl;
+        print_menu_line();
+        auto * temp = new node_read_menu();
+        temp = head_menu;
+        cout << left << setw(6) << "|" << left << setw(10) << "No." << left << setw(35 ) << "Food Name" << left << setw(10 ) << "Normal Price" << setw(10)
+             << "" << left << setw(10) << "Extra Price" << right << setw(6 ) << "|" << endl;
+        print_menu_line();
+        string normalprice, extraprice;
+        while ( temp != NULL )
+        {
+            normalprice = to_string(temp->menu_price);
+            extraprice  = to_string(temp->menu_price + temp->menu_price_extra);
+            cout << left << setw(6) << "|" << left << setw(10) << "[" + temp->menu_ID + "]" << left << setw(30 ) << temp->menu_name << setw(5) << "|" << left << setw(10 ) << "     " + normalprice << setw(7)
+                 << "" << setw(3) << "|" << left << setw(10) << "      " + extraprice << right << setw(9 ) << "|" << endl;
+            temp = temp->link;
+        }
+        print_menu_line();
+    }
 
 };
-
-static void print_menu_line() {
-    for (int i = 1; i <= 90; i++) {
-        cout << "=";
-    }
-    cout << endl;
-}
-
+menu_list menu;
 int home_menu() {
     int home_menu_choice;
     print_menu_line();
@@ -362,9 +375,9 @@ int home_menu() {
     cin >> home_menu_choice;
     return home_menu_choice;
 };
-
 void main_menu(const string &role) {
     int main_menu_choice;
+    menu.read_file_menu_txt();
     Main_Menu:
     if (role == "customer") {
         print_menu_line();
@@ -379,11 +392,12 @@ void main_menu(const string &role) {
         cout << "Select option[1-4] :";
         cin >> main_menu_choice;
         if (main_menu_choice == 1) {
-
+            menu.view_menu();
         }else if(main_menu_choice == 2){
 
+
         }else if (main_menu_choice == 3){
-            
+            menu.view_menu();
         }
         if (main_menu_choice != 4){
             goto Main_Menu;
@@ -405,6 +419,7 @@ void main_menu(const string &role) {
 
         }
         if (main_menu_choice != 3){
+
             goto Main_Menu;
         }
     }
@@ -413,9 +428,6 @@ void main_menu(const string &role) {
 int main() {
     member_list memberList{};
     memberList.readUserFile();
-    menu_list menu;
-    menu.read_file_menu_txt();
-
     Home:
     int home = home_menu();
     int slot  = -1;
