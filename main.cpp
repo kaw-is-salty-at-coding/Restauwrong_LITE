@@ -359,7 +359,7 @@ int home_menu() {
     return home_menu_choice;
 };
 
-int main_menu(const string &role) {
+void main_menu(const string &role) {
     int main_menu_choice;
     Main_Menu:
     if (role == "customer") {
