@@ -274,7 +274,7 @@ public:
         }
         print_menu_line();
     }
-    void view_my_order() {
+    void view_my_order(string user) {
         print_menu_line();
         cout << setw(41) << left << "|" << "My order" << setw(41) << right << "|" << endl;
         print_menu_line();
@@ -285,10 +285,13 @@ public:
         nodeMenu *temp = head;
         total = 0;
         for(int i = 0 ; i< count ; i++){
-            total += temp->price * temp->quantity;
-            cout << left << setw(6) << "|"  << left << setw(48) << temp->menu << left
-                 << setw(10) << temp->quantity << setw(10)
-                 << "" << left << setw(10) << temp->price << right << setw(6) << "|" << endl;
+            if(temp->username == user ){
+                total += temp->price * temp->quantity;
+                cout << left << setw(6) << "|"  << left << setw(48) << temp->menu << left
+                     << setw(10) << temp->quantity << setw(10)
+                     << "" << left << setw(10) << temp->price << right << setw(6) << "|" << endl;
+            }
+
             temp = temp->link;
         }
         print_menu_line();
@@ -578,7 +581,7 @@ void main_menu(const string &role) {
         } else if (main_menu_choice == 3) {
             menu.view_menu();
         } else if (main_menu_choice == 4) {
-           ordermode.view_my_order();
+           ordermode.view_my_order(memberList.get(slot,1));
         }
         if (main_menu_choice != 5) {
             goto Main_Menu;
