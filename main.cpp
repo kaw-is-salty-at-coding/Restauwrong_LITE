@@ -222,21 +222,9 @@ public:
             tail = temp;
             count++;
         } else {
-            nodeMenu *compare = head;
-            bool dupe = false;
-            for (int j = 0; j < count; j++) {
-                if (compare->menu == temp->menu) {
-                    compare->quantity += temp->quantity;
-                    dupe = true;
-                }
-                compare = compare->link;
-            }
-            if (!dupe) {
-                tail->link = temp;
-                tail = temp;
-                count++;
-            }
-
+            tail->link = temp;
+            tail = temp;
+            count++;
         }
         total += temp->price * temp->quantity;
     }
