@@ -189,15 +189,17 @@ public:
 
 class nodeMenu {
 public:
-    nodeMenu(string m, int q, int p) {
+    nodeMenu(string m, int q, int p,string u) {
         menu = std::move(m);
         quantity = q;
         price = p;
+        username = u;
     }
 
     string menu;
     int quantity;
     int price;
+    string username;
     nodeMenu *link{};
 };
 
@@ -207,15 +209,13 @@ public:
     nodeMenu *tail{};
     int count = 0;
     int total = 0;
-    int table;
     nodeOrder *link{};
 
-    explicit nodeOrder(int t) {
-        table = t;
+    explicit nodeOrder() {
     }
 
-    void add(string m, int q, int p) {
-        auto *temp = new nodeMenu(std::move(m), q, p);
+    void add(string m, int q, int p,string u) {
+        auto *temp = new nodeMenu(std::move(m), q, p,u);
 
         if (count == 0) {
             head = temp;
@@ -238,14 +238,13 @@ public:
             }
 
         }
-
         total += temp->price * temp->quantity;
     }
 
     void showFull() const {
         nodeMenu *temp = head;
         print_menu_line();
-        cout << "|Table:" << setw(2) << table << setw(40) << right << "|" << endl
+        cout << "|Table:" << setw(2)  << setw(40) << right << "|" << endl
              << "|" << setw(4) << "No.|" << setw(26) << left << "Menu" << "|" << setw(5) << "Qty" << "|" << setw(5)
              << "Price" << "|" << "Net |" << endl;
         print_menu_line();
@@ -264,7 +263,7 @@ public:
     void showMini() const {
         nodeMenu *temp = head;
         print_menu_line();
-        cout << "|Table:" << setw(2) << table << setw(29) << right << "|" << endl
+        cout << "|Table:" << setw(2)  << setw(29) << right << "|" << endl
              << "|" << setw(4) << "No.|" << setw(26) << left << "Menu" << "|" << setw(5) << "Qty" << "|"
              << endl;
         print_menu_line();
@@ -276,61 +275,6 @@ public:
         print_menu_line();
     }
 };
-class queue {
-public:
-    nodeOrder *front;
-    nodeOrder *rear;
-    nodeOrder *del;
-    int count;
-
-    void enqueue(int table) {
-        if (table == 0) {
-
-        } else {
-            auto *temp = new nodeOrder(table);
-            if (count == 0) {
-                front = temp;
-                rear = temp;
-            } else {
-                rear->link = temp;
-                rear = temp;
-            }
-            count++;
-        }
-    }
-
-    void dequeue() {
-        cout << "===============================" << endl;
-        cout << "Table:" << front->table << "done" << endl;
-        cout << "===============================" << endl;
-        del = front;
-        front = front->link;
-        delete del;
-        count--;
-    }
-
-    void show() const {
-        nodeOrder *temp = front;
-        cout << "______________________________________" << endl;
-        cout << "Queue Exist:" << count << endl;
-        cout << "______________________________________" << endl;
-        for (int i = 0; i < count; i++) {
-            cout << endl;
-            cout << "Queue:" << i + 1 << endl;
-            temp->showMini();
-            temp = temp->link;
-        }
-    }
-
-    void add(string m, int q, int p) const {
-        rear->add(std::move(m), q, p);
-    }
-
-    void showOrder() const {
-        rear->showFull();
-    }
-};
-queue qu;
 
 class menu_list {
 private:
@@ -570,9 +514,9 @@ public:
         }
     }
 };
-
+nodeOrder ordermode;
 menu_list menu;
-
+member_list memberList{};
 int home_menu() {
     int home_menu_choice;
     print_menu_line();
@@ -613,7 +557,7 @@ void main_menu(const string &role) {
             cout << "How many?[0 to cancel]:";
             cin >> quan;
             if (no != 0 && quan != 0) {
-                qu.add(menu.get_menu_name(no), quan,menu.get_menu_price(no));
+                ordermode.add(menu.get_menu_name(no), quan,menu.get_menu_price(no),memberList.get(slot,1));
             }
         } else if (main_menu_choice == 2) {
 
@@ -649,7 +593,6 @@ void main_menu(const string &role) {
 }
 
 int main() {
-    member_list memberList{};
     memberList.readUserFile();
     Home:
     int home = home_menu();
