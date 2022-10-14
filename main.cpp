@@ -5,7 +5,7 @@
 #include <utility>
 
 using namespace std;
-
+int slot = -1;
 static void print_menu_line() {
     for (int i = 0; i < 90; i++) {
         cout << "=";
@@ -180,6 +180,8 @@ public:
         }
         if (type == 0) {
             return temp->member_type;
+        }else if (type == 1){
+            return temp->member_Username;
         }
         return {};
     }
@@ -503,6 +505,70 @@ public:
              << setw(10) << "Quantity" << setw(10)
              << "" << left << setw(10) << "Extra Price" << right << setw(6) << "|" << endl;
     }
+    string get_menu_name( int no ){
+        auto * temp = new node_read_menu();
+        temp = head_menu;
+        int menuID; bool check = false;
+        string result;
+        while( temp != NULL )
+        {
+            menuID = stoi(temp->menu_ID);
+            if( menuID == no ){
+                check = true;
+                result = temp->menu_name;
+                break;
+            }
+            temp = temp->link;
+        }
+        if( !check ){
+            return "Not Found!!";
+        }else {
+            return result;
+        }
+    }
+
+    int get_menu_price(int no ){
+        auto * temp = new node_read_menu();
+        temp = head_menu;
+        int menuID; bool check = false;
+        int result;
+        while( temp != NULL )
+        {
+            menuID = stoi(temp->menu_ID);
+            if( menuID == no ){
+                check = true;
+                result = temp->menu_price;
+                break;
+            }
+            temp = temp->link;
+        }
+        if( !check ){
+            return 0;
+        }else {
+            return result;
+        }
+    }
+    int get_menu_price_extra(int no ){
+        auto * temp = new node_read_menu();
+        temp = head_menu;
+        int menuID; bool check = false;
+        int result;
+        while( temp != NULL )
+        {
+            menuID = stoi(temp->menu_ID);
+            if( menuID == no ){
+                check = true;
+                result = temp->menu_price + temp->menu_price_extra;
+                break;
+            }
+            temp = temp->link;
+        }
+        if( !check ){
+            return 0;
+        }else {
+            return result;
+        }
+    }
 };
 
 menu_list menu;
@@ -547,7 +613,7 @@ void main_menu(const string &role) {
             cout << "How many?[0 to cancel]:";
             cin >> quan;
             if (no != 0 && quan != 0) {
-                qu.add(menuList[no - 1], quan, menuPrice[no - 1]);
+                qu.add(menu.get_menu_name(no), quan,menu.get_menu_price(no));
             }
         } else if (main_menu_choice == 2) {
 
@@ -587,7 +653,7 @@ int main() {
     memberList.readUserFile();
     Home:
     int home = home_menu();
-    int slot = -1;
+
     if (home == 1) {
         slot = memberList.login();
         if (slot != -1) {
